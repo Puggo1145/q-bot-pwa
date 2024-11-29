@@ -1,4 +1,7 @@
 import type { MetaFunction } from "@remix-run/node";
+import { Outlet } from "@remix-run/react";
+import { SidebarProvider, SidebarTrigger } from "~/components/ui/sidebar";
+import { AppSidebar } from "~/components/common/app-sidebar";
 
 export const meta: MetaFunction = () => {
   return [
@@ -9,8 +12,12 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <div className="flex h-screen items-center justify-center">
-      Hello World
-    </div>
+    <SidebarProvider>
+      <AppSidebar />
+      <main className="w-full h-screen">
+        <SidebarTrigger />
+        <Outlet />
+      </main>
+    </SidebarProvider>
   );
 }
